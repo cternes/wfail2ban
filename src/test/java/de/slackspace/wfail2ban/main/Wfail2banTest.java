@@ -8,7 +8,7 @@ public class Wfail2banTest {
 
 	@Test
 	public void testStartApp() {
-		Wfail2ban wfail2ban = new Wfail2ban(false);
+		Wfail2ban wfail2ban = new Wfail2ban(true); 
 		wfail2ban.readConfiguration("target/test-classes/jail.conf");
 		wfail2ban.startLogfileMonitoring();
 		wfail2ban.startFirewallMonitoring();
