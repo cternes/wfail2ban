@@ -15,7 +15,19 @@
  ******************************************************************************/
 package de.slackspace.wfail2ban.filter;
 
+/**
+ * The FilterResultHandler handles {@link FilterResult}s.
+ * It is mostly used as a callback.
+ * 
+ * @author Christian Ternes
+ *
+ */
 public interface FilterResultHandler {
 
+	/**
+	 * Handles a {@link FilterResult}. Mostly that means adding the host from the {@link FilterResult} to a firewall blocking list.
+	 * 
+	 * @param filterResult 
+	 */
 	public void handleFilterResult(FilterResult filterResult);
 }

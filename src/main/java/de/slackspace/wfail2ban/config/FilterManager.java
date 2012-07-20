@@ -17,7 +17,6 @@ package de.slackspace.wfail2ban.config;
 
 import java.io.File;
 
-import de.slackspace.wfail2ban.config.impl.DefaultConfiguration;
 import de.slackspace.wfail2ban.filter.Filter;
 
 /**
@@ -36,14 +35,4 @@ public interface FilterManager {
 	 */
 	public Filter readFilterFile(File filterFile);
 	
-	
-	/**
-	 * Reads the specified filter file and creates a {@link Filter} from it.
-	 * The {@link DefaultConfiguration} is used to set global parameters if not given in filter file.
-	 * 
-	 * @param filterFile
-	 * @param config
-	 * @return a {@link Filter}
-	 */
-	public Filter readFilterFile(File filterFile, DefaultConfiguration config);
 }

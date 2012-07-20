@@ -17,11 +17,46 @@ package de.slackspace.wfail2ban.filter;
 
 import java.util.Set;
 
+/**
+ * A FilterResult contains IP addresses which should be blocked. 
+ * 
+ * @author Christian Ternes
+ *
+ */
 public interface FilterResult {
 
+	/**
+	 * Retrieves the name of the {@link Filter} which has generated the {@link FilterResult}.
+	 * 
+	 * @return the filter name
+	 */
 	public String getFilterName();
+	
+	/**
+	 * Sets the name of the {@link Filter} which has generated the {@link FilterResult}.
+	 * 
+	 * @param filterName the filter name
+	 */
 	public void setFilterName(String filterName);
+	
+	/**
+	 * Retrieves a {@link Set} of IP's which should be blocked by a firewall.
+	 * 
+	 * @return a {@link Set} of IP's which should be blocked
+	 */
 	public Set<String> getIpsToBlock();
+	
+	/**
+	 * Sets a {@link Set} of IP's which should be blocked by a firewall.
+	 * 
+	 * @param ip a {@link Set} of IP's which should be blocked
+	 */
 	public void addIpToBlock(String ip);
+	
+	/**
+	 * Determines if the IP set is empty or not. 
+	 * 
+	 * @return true if the IP set is empty, false otherwise
+	 */
 	public boolean isEmpty();
 }

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.ini4j.Ini;
 import org.ini4j.InvalidFileFormatException;
@@ -30,6 +32,8 @@ import org.slf4j.LoggerFactory;
 import de.slackspace.wfail2ban.config.FilterManager;
 import de.slackspace.wfail2ban.config.JailManager;
 import de.slackspace.wfail2ban.filter.Filter;
+import de.slackspace.wfail2ban.util.ConsolePrinter;
+import de.slackspace.wfail2ban.util.NumberUtil;
 
 public class DefaultJailManager implements JailManager {
 
@@ -75,14 +79,13 @@ public class DefaultJailManager implements JailManager {
 			config.setFindtime(findTime);
 		}
 		
-		if(logger.isDebugEnabled()) {
-			logger.debug("--------------Global Config---------------");
-			logger.debug("delayPeriod="+(config.getDelayPeriod()/1000)+"s");
-			logger.debug("refreshPeriod="+(config.getRefreshPeriod()/1000)+"s");
-			logger.debug("findTime="+config.getFindtime()+"s");
-			logger.debug("maxRetry="+config.getMaxRetry());
-			logger.debug("------------------------------------------");
-		}
+		ConsolePrinter.printMessage("--------------GLOBAL CONFIG---------------");
+		ConsolePrinter.printMessage("delayPeriod="+(config.getDelayPeriod()/1000)+"s");
+		ConsolePrinter.printMessage("refreshPeriod="+(config.getRefreshPeriod()/1000)+"s");
+		ConsolePrinter.printMessage("findTime="+config.getFindtime()+"s");
+		ConsolePrinter.printMessage("maxRetry="+config.getMaxRetry());
+		ConsolePrinter.printMessage("------------------------------------------");
+		ConsolePrinter.printMessage("");
 		
 		return config;
 	}
@@ -116,7 +119,7 @@ public class DefaultJailManager implements JailManager {
 		if(isEnabled) {
 			String filter = section.get(Filter.FILTER);
 			if(filter != null) {
-				Filter parsedFilter = readFilter(filter, config);
+				Filter parsedFilter = readFilter(filter);
 				parsedFilter.setName(sectionName);
 				
 				String logpath = section.get(Filter.LOGPATH);
@@ -124,14 +127,39 @@ public class DefaultJailManager implements JailManager {
 					parsedFilter.setLogfilePath(logpath);
 				}
 				
+				String maxretry = section.get(Filter.MAXRETRY);
+				if(NumberUtil.isInteger(maxretry)) {
+					parsedFilter.setMaxRetry(NumberUtil.toInteger(maxretry));
+				}
+				else {
+					parsedFilter.setMaxRetry(config.getMaxRetry());
+				}
+				
+				String findtime = section.get(Filter.FINDTIME);
+				if(NumberUtil.isLong(findtime)) {
+					parsedFilter.setFindtime(NumberUtil.toLong(findtime));
+				}
+				else {
+					parsedFilter.setFindtime(config.getFindtime());
+				}
+				
+				ConsolePrinter.printMessage("--------------ACTIVE FILTER---------------");
+				ConsolePrinter.printMessage("filterName="+parsedFilter.getName());
+				ConsolePrinter.printMessage("failRegex="+parsedFilter.getFailPattern());
+				ConsolePrinter.printMessage("logfilePath="+parsedFilter.getLogfilePath());
+				ConsolePrinter.printMessage("findTime="+parsedFilter.getFindtime()+"s");
+				ConsolePrinter.printMessage("maxRetry="+parsedFilter.getMaxRetry());
+				ConsolePrinter.printMessage("------------------------------------------");
+				ConsolePrinter.printMessage("");
+				
 				return parsedFilter;
 			}
 		}
 		return null;
 	}
 
-	private Filter readFilter(String filter, DefaultConfiguration config) {
-		return filterManager.readFilterFile(new File(filterDirectory + filter + FILTER_FILE_SUFFIX), config);
+	private Filter readFilter(String filter) {
+		return filterManager.readFilterFile(new File(filterDirectory + filter + FILTER_FILE_SUFFIX));
 	}
 	
 	public void setFilterDirectory(String filterDirectory) {

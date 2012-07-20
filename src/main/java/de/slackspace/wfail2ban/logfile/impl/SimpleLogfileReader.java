@@ -25,6 +25,12 @@ import org.slf4j.LoggerFactory;
 import de.slackspace.wfail2ban.filter.Filter;
 import de.slackspace.wfail2ban.filter.FilterResultHandler;
 
+/**
+ * The SimpleLogfileReader parses a log file only once.
+ * 
+ * @author Christian Ternes
+ *
+ */
 public class SimpleLogfileReader extends AbstractLogfileReader {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());

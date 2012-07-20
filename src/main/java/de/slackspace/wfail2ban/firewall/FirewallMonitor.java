@@ -18,7 +18,20 @@ package de.slackspace.wfail2ban.firewall;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The FirewallMonitor will invoke the firewall from time to time to update the firewall rules.
+ * Since windows does not provide iptables, we have to call the firewall in periods.
+ * 
+ * @author Christian Ternes
+ *
+ */
 public interface FirewallMonitor {
 
+	/**
+	 * Invokes the firewall to update the firewall rules.
+	 * 
+	 * @param isTestMode true if the application is in test mode
+	 * @param blockedIpsPerFilter a {@link Map} of IP's which should be blocked, grouped by the filter who created the IP list
+	 */
 	public void invokeFirewall(boolean isTestMode, Map<String, Set<String>> blockedIpsPerFilter);
 }

@@ -35,11 +35,6 @@ public class DefaultFilterManager implements FilterManager {
 	
 	@Override
 	public Filter readFilterFile(File filterFile) {
-		return readFilterFile(filterFile, null);
-	}
-	
-	@Override
-	public Filter readFilterFile(File filterFile, DefaultConfiguration config) {
 		if(filterFile == null) {
 			throw new IllegalArgumentException("FilterFile must not be null");
 		}
@@ -54,8 +49,6 @@ public class DefaultFilterManager implements FilterManager {
 			while(scanner.hasNext()) {
 				String line = scanner.nextLine();
 				extractRegEx(line, filter);
-				extractFindtime(line, filter, config);
-				extractMaxRetry(line, filter, config);
 			}
 		} catch (FileNotFoundException e) {
 			logger.error("Filter file "+filterFile+" could not be read. Error was: ", e);
@@ -65,40 +58,6 @@ public class DefaultFilterManager implements FilterManager {
 		}
 		
 		return filter;
-	}
-
-	private void extractMaxRetry(String line, Filter filter, DefaultConfiguration config) {
-		Pattern pattern = Pattern.compile("maxretry.*=(.*)");
-		Matcher matcher = pattern.matcher(line);
-		boolean matches = matcher.matches();
-		if(matches) {
-			String value = matcher.group(1).trim();
-			if(NumberUtil.isInteger(value)) {
-				filter.setMaxRetry(Integer.parseInt(value));
-			}
-		}
-		else {
-			if(config != null) {
-				filter.setMaxRetry(config.getMaxRetry());
-			}
-		}
-	}
-
-	private void extractFindtime(String line, Filter filter, DefaultConfiguration config) {
-		Pattern pattern = Pattern.compile("findtime.*=(.*)");
-		Matcher matcher = pattern.matcher(line);
-		boolean matches = matcher.matches();
-		if(matches) {
-			String value = matcher.group(1).trim();
-			if(NumberUtil.isLong(value)) {
-				filter.setFindTime(Long.parseLong(value));
-			}
-		}
-		else {
-			if(config != null) {
-				filter.setFindTime(config.getFindtime());
-			}
-		}
 	}
 
 	private void extractRegEx(String line, Filter filter) {

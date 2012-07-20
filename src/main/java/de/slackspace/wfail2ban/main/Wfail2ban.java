@@ -37,6 +37,12 @@ import de.slackspace.wfail2ban.logfile.impl.ContinuousLogfileReader;
 import de.slackspace.wfail2ban.logfile.impl.SimpleLogfileReader;
 import de.slackspace.wfail2ban.util.ConsolePrinter;
 
+/**
+ * This class provides all the core functionalities from wfail2ban.  
+ * 
+ * @author Christian Ternes
+ *
+ */
 public class Wfail2ban implements FilterResultHandler {
 
 	private static final long FIREWALL_REFRESH_PERIOD_TEST = 5000L; //5 sec

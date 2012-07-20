@@ -19,6 +19,12 @@ import java.util.Calendar;
 
 public interface DateTimePattern {
 
+	/**
+	 * Extracts the datetime from the given log line. 
+	 * 
+	 * @param line a line from a log file
+	 * @return the datetime as {@link Calendar} if found, null otherwise
+	 */
 	public Calendar matchDateTime(String line);
 	
 }

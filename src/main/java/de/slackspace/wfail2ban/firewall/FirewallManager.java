@@ -17,7 +17,20 @@ package de.slackspace.wfail2ban.firewall;
 
 import java.util.Set;
 
+/**
+ * The FirewallManager takes care about the firewall rules.
+ * The manager can create new rules if necessary, prepares the given IP's and manages the rule names.
+ * 
+ * @author Christian Ternes
+ *
+ */
 public interface FirewallManager {
 
+	/**
+	 * Adds new firewall rules that will block the given {@link Set} of IP's.
+	 * 
+	 * @param filterName the filter who created the IP set
+	 * @param ipSet the {@link Set} of IP's which should be blocked
+	 */
 	public void addFirewallRules(String filterName, Set<String> ipSet);
 }

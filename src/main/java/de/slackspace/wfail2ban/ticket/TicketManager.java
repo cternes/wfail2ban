@@ -20,7 +20,22 @@ import java.util.regex.Matcher;
 import de.slackspace.wfail2ban.filter.Filter;
 import de.slackspace.wfail2ban.filter.FilterResult;
 
+/**
+ * The TicketManager takes care of storing all forbidden access request in the form of {@link Ticket}s.
+ * Each {@link Filter} has it's own TicketManager. 
+ * 
+ * @author Christian Ternes
+ *
+ */
 public interface TicketManager {
 
+	/**
+	 * Creates a new {@link Ticket} and stores it in the TicketManager.
+	 * 
+	 * @param line the line from a log file which has a forbidden access request in it
+	 * @param matcher the {@link Matcher} with the host IP
+	 * @param filter the {@link Filter} who has matched the bad request
+	 * @param filterResult the {@link FilterResult} which contains masterdata about the bad request
+	 */
 	public void createTicket(String line, Matcher matcher, Filter filter, FilterResult filterResult);
 }

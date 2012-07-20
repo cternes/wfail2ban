@@ -29,7 +29,7 @@ public class RegexFilter implements Filter {
 	private String name;
 	private String logfilePath;
 	private Pattern failPattern;
-	private long findTime = 600; //10 min
+	private long findtime = 600; //10 min
 	private int maxRetry = 3;
 	private TicketManager ticketManager = new FailTicketManager();
 	
@@ -85,12 +85,12 @@ public class RegexFilter implements Filter {
 		callback.handleFilterResult(filterResult);
 	}
 
-	public void setFindTime(long findTime) {
-		this.findTime = findTime;
+	public void setFindtime(long findtime) {
+		this.findtime = findtime;
 	}
 
-	public long getFindTime() {
-		return findTime;
+	public long getFindtime() {
+		return findtime;
 	}
 
 	public void setMaxRetry(int maxRetry) {
@@ -104,7 +104,7 @@ public class RegexFilter implements Filter {
 	@Override
 	public String toString() {
 		return "RegexFilter [name=" + name + ", logfilePath=" + logfilePath
-				+ ", failPattern=" + failPattern + ", findTime=" + findTime
+				+ ", failPattern=" + failPattern + ", findTime=" + findtime
 				+ ", maxRetry=" + maxRetry + "]";
 	}
 	

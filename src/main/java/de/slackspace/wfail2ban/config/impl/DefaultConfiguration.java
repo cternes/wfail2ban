@@ -18,7 +18,7 @@ package de.slackspace.wfail2ban.config.impl;
 import de.slackspace.wfail2ban.util.NumberUtil;
 
 /**
- * The DefaultConfiguration which holds all global configuration parameters. 
+ * The DefaultConfiguration holds all global configuration parameters. 
  * 
  * @author Christian Ternes
  *

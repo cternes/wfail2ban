@@ -24,7 +24,7 @@ public class LogfileReaderTest {
 		//78.191.162.16 - - [18/Jul/2012:10:07:36 +0200] "GET http://images.google.com/ HTTP/1.1" 302 230
 		Filter filter = new RegexFilter(LOGFILE, "<HOST> - - \\[.*\\] \"GET http://.*"); //(.*) - - \\[.*\\].*
 		filter.setMaxRetry(1);
-		filter.setFindTime(3600);
+		filter.setFindtime(3600);
 		reader.parseLogfile(filter, new FilterResultHandler() {
 			
 			@Override
@@ -101,7 +101,7 @@ public class LogfileReaderTest {
 		final Set<String> ipsToBlock = new HashSet<String>();
 		
 		Filter filter = new RegexFilter("target/test-classes/test-ticket.log", "<HOST> - - \\[.*\\] \"GET http://.*");
-		filter.setFindTime(3600);
+		filter.setFindtime(3600);
 		reader.parseLogfile(filter, new FilterResultHandler() {
 			
 			@Override

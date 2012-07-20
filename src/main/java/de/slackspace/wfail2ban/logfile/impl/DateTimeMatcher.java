@@ -21,6 +21,12 @@ import java.util.List;
 
 import de.slackspace.wfail2ban.logfile.DateTimePattern;
 
+/**
+ * A datetime matcher to extract the datetime from a log file by testing several common datetime patterns against the log file. 
+ * 
+ * @author Christian Ternes
+ *
+ */
 public class DateTimeMatcher {
 
 	private List<DateTimePattern> patternList = new ArrayList<DateTimePattern>() {{
@@ -59,6 +65,14 @@ public class DateTimeMatcher {
 		add(pattern);
 	}};
 	
+	/**
+	 * Extracts the datetime from a given line in a log file, by using several common datetime patterns.
+	 * If a datetime has been found, it will be returned.
+	 * If no datetime could be found, null will be returned.
+	 * 
+	 * @param line a line from a log file
+	 * @return the found datetime as {@link Calendar} or null if none found
+	 */
 	public Calendar matchDateTime(String line) {
 		for (DateTimePattern dateTimePattern : patternList) {
 			Calendar cal = dateTimePattern.matchDateTime(line);

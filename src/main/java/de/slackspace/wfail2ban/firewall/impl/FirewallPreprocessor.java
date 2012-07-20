@@ -21,6 +21,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * A preprocessor to split a {@link Set} of IP's into several lists if necessary.
+ * This is necessary, because the windows firewall can only manage rules which block no more than 200 IP's.
+ * 
+ * @author Christian Ternes
+ *
+ */
 public class FirewallPreprocessor {
 	
 	private int firewallMaxIps = 200; //default firewall capacity

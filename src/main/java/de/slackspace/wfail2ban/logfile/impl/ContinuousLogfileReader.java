@@ -26,6 +26,12 @@ import org.apache.commons.io.input.TailerListenerAdapter;
 import de.slackspace.wfail2ban.filter.Filter;
 import de.slackspace.wfail2ban.filter.FilterResultHandler;
 
+/**
+ * The ContinuousLogfileReader monitors a log file and parses it continuously. (similar to tail -f)
+ * 
+ * @author Christian Ternes
+ *
+ */
 public class ContinuousLogfileReader extends AbstractLogfileReader {
 
 	@Override

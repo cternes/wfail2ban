@@ -16,7 +16,7 @@
 package de.slackspace.wfail2ban.util;
 
 /**
- * A utility class to check if a string is of a certain number type.
+ * A utility class to provide helper methods for string conversion.
  * 
  * @author Christian Ternes
  *
@@ -53,5 +53,33 @@ public final class NumberUtil {
 		catch(NumberFormatException e) {
 			return false;
 		}
+	}
+	
+	/**
+	 * Converts a given string into type integer.
+	 * If string is not an integer, -1 will be returned.
+	 * 
+	 * @param value
+	 * @return the string value as integer or -1 if cannot be converted
+	 */
+	public static int toInteger(String value) {
+		if(isInteger(value)) {
+			return Integer.parseInt(value);
+		}
+		return -1;
+	}
+	
+	/**
+	 * Converts a given string into type long.
+	 * If string is not a long, -1 will be returned.
+	 * 
+	 * @param value
+	 * @return the string value as long or -1 if cannot be converted
+	 */
+	public static long toLong(String value) {
+		if(isLong(value)) {
+			return Long.parseLong(value);
+		}
+		return -1;
 	}
 }

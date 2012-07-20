@@ -64,7 +64,7 @@ public class FailTicketManager implements TicketManager {
 			}
 		}
 		else { //use existing ticket
-			increaseRetryCount(ticket, accessTime, filter.getFindTime());
+			increaseRetryCount(ticket, accessTime, filter.getFindtime());
 		}
 		
 		checkRetryCount(filter, filterResult, ticket);
