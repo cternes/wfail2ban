@@ -1,0 +1,6 @@
+wfail2ban.log
+
+target
+.settings
+.classpath
+.project

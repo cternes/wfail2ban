@@ -1,0 +1,13 @@
+69.162.97.106 - - [18/Jul/2012:10:07:07 +0200] "CONNECT www.example.com:443 HTTP/1.1" 302 230
+81.7.224.242 - - [18/Jul/2012:15:04:46 +0200] "GET /some/path/views/home.jsf HTTP/1.1" 302 -
+171.112.185.64 - - [18/Jul/2012:10:07:07 +0200] "GET http://host/some/path/attreffer.php?site=111 HTTP/1.1" 404 1069
+96.9.132.141 - - [18/Jul/2012:10:07:20 +0200] "GET http://example.com/view?id=23 HTTP/1.0" 302 309
+188.40.20.91 - - [18/Jul/2012:10:07:26 +0200] "GET http://example.com/content/ HTTP/1.0" 302 263
+188.40.20.91 - - [18/Jul/2012:10:07:26 +0200] "GET http://example.com/some/path/content/ HTTP/1.0" 404 1129
+96.9.132.141 - - [18/Jul/2012:10:07:26 +0200] "GET http://example.com/some/path/content/ HTTP/1.0" 404 1036
+81.7.224.242 - - [18/Jul/2012:15:04:46 +0200] "GET /some/path/read/ HTTP/1.1" 302 -
+125.121.129.83 - - [18/Jul/2012:10:07:29 +0200] "GET http://example.com/ HTTP/1.0" 302 241
+125.121.129.83 - - [18/Jul/2012:10:07:30 +0200] "GET http://host/some/path/ HTTP/1.0" 404 1063
+78.191.162.16 - - [18/Jul/2012:10:07:36 +0200] "GET http://images.google.com/ HTTP/1.1" 302 230
+81.7.224.242 - - [18/Jul/2012:15:04:46 +0200] "GET /favicon.ico HTTP/1.1" 302 241
+81.7.224.242 - - [18/Jul/2012:15:04:47 +0200] "GET /some/path/favicon.ico HTTP/1.1" 404 1063
